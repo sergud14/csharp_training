@@ -8,13 +8,8 @@ namespace WebAddressbookTests
         [Test]
         public void ContactCreationTest()
         {
-            app.Navigator.GoToHomePage();
-            app.Auth.Login(new AccountData("admin", "secret"));
-            app.ContactHelper.InitContactCreation();
-            ContactData contactData = new ContactData("John", "Johnson");
-            app.ContactHelper.FillContactForm(contactData);
-            app.ContactHelper.SubmitContactCreation();
-            app.ContactHelper.ReturnToContactsPage();
+            ContactData contact = new ContactData("John", "Johnson");
+            app.Contacts.Create(contact);
         }
     }
 }

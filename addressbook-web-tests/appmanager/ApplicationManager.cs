@@ -17,10 +17,10 @@ namespace WebAddressbookTests
         public ApplicationManager()
         {
             driver=new ChromeDriver();
-            loginHelper = new LoginHelper(driver);
-            navigator = new NavigationHelper(driver, baseURL);
-            groupHelper = new GroupHelper(driver);
-            contactHelper = new ContactHelper(driver);
+            loginHelper = new LoginHelper(this);
+            navigator = new NavigationHelper(this,baseURL);
+            groupHelper = new GroupHelper(this);
+            contactHelper = new ContactHelper(this);
         }
         public void Stop()
         {
@@ -41,13 +41,24 @@ namespace WebAddressbookTests
         { 
             get { return navigator; }
         }
-        public GroupHelper GroupHelper
+        public GroupHelper Groups
         {
             get { return groupHelper; }
         }
-        public ContactHelper ContactHelper
+        public ContactHelper Contacts
         {
             get { return contactHelper; }
         }
+
+        public IWebDriver Driver 
+        {
+            get { return driver; }
+        }
+
+        public string BaseURL
+        {
+            get { return baseURL; }
+        }
+
     }
 }

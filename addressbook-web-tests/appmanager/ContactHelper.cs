@@ -3,23 +3,33 @@ using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
-    public class ContactHelper
-    {
-        private IWebDriver driver;
-
-        public ContactHelper(IWebDriver driver)
+    public class ContactHelper : HelperBase
+    { 
+        public ContactHelper(ApplicationManager manager) : base(manager)
         {
-            this.driver = driver;
+
         }
-        public void ReturnToContactsPage()
+
+        public ContactHelper Create(ContactData contact)
+        {
+            manager.Contacts.InitContactCreation();
+            FillContactForm(contact);
+            SubmitContactCreation();
+            ReturnToContactsPage();
+            return this;
+        }
+
+        public ContactHelper ReturnToContactsPage()
         {
             driver.FindElement(By.XPath("//a[text()='home']")).Click();
+            return this;
         }
-        public void SubmitContactCreation()
+        public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[21]")).Click();
+            return this;
         }
-        public void FillContactForm(ContactData contactdata)
+        public ContactHelper FillContactForm(ContactData contactdata)
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
@@ -92,10 +102,12 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("notes")).Click();
             driver.FindElement(By.Name("notes")).Clear();
             driver.FindElement(By.Name("notes")).SendKeys(contactdata.Notes);
+            return this;
         }
-        public void InitContactCreation()
+        public ContactHelper InitContactCreation()
         {
             driver.FindElement(By.LinkText("add new")).Click();
+            return this;
         }
     }
 }
