@@ -1,98 +1,25 @@
-﻿using System;
-using System.Text;
-using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
 namespace WebAddressbookTests
 {
-    [TestFixture]
-    public class TestBase
+    public class ContactHelper
     {
-        protected IWebDriver driver;
-        protected StringBuilder verificationErrors;
-        protected string baseURL = @"http://localhost";
+        private IWebDriver driver;
 
-        [SetUp]
-        public void SetupTest()
+        public ContactHelper(IWebDriver driver)
         {
-            driver = new ChromeDriver();
-            verificationErrors = new StringBuilder();
+            this.driver = driver;
         }
-
-        [TearDown]
-        public void TeardownTest()
-        {
-            try
-            {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
-
-            }
-            Assert.AreEqual("", verificationErrors.ToString());
-        }
-
-        protected void Login(AccountData account)
-        {
-            driver.FindElement(By.Name("user")).Clear();
-            driver.FindElement(By.Name("user")).SendKeys(account.Username);
-            driver.FindElement(By.Name("pass")).Clear();
-            driver.FindElement(By.Name("pass")).SendKeys(account.Password);
-            driver.FindElement(By.XPath("//input[@value='Login']")).Click();
-        }
-
-        protected void GoToHomePage()
-        {
-            driver.Navigate().GoToUrl(baseURL + "/addressbook/");
-        }
-
-        protected void InitGroupCreation()
-        {
-            driver.FindElement(By.Name("new")).Click();
-        }
-
-        protected void GoToGroupsPage()
-        {
-            driver.FindElement(By.LinkText("groups")).Click();
-        }
-
-        protected void ReturnToGroupsPage()
-        {
-            driver.FindElement(By.LinkText("group page")).Click();
-            driver.FindElement(By.LinkText("Logout")).Click();
-        }
-
-        protected void SubmitGroupCreation()
-        {
-            driver.FindElement(By.Name("submit")).Click();
-        }
-
-        protected void FillGroupForm(GroupData groupData)
-        {
-            driver.FindElement(By.Name("group_name")).Click();
-            driver.FindElement(By.Name("group_name")).Clear();
-            driver.FindElement(By.Name("group_name")).SendKeys(groupData.Name);
-            driver.FindElement(By.Name("group_header")).Click();
-            driver.FindElement(By.Name("group_header")).Clear();
-            driver.FindElement(By.Name("group_header")).SendKeys(groupData.Header);
-            driver.FindElement(By.Name("group_footer")).Click();
-            driver.FindElement(By.Name("group_footer")).Clear();
-            driver.FindElement(By.Name("group_footer")).SendKeys(groupData.Footer);
-        }
-
-        protected void ReturnToContactsPage()
+        public void ReturnToContactsPage()
         {
             driver.FindElement(By.XPath("//a[text()='home']")).Click();
         }
-
-        protected void SubmitContactCreation()
+        public void SubmitContactCreation()
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[21]")).Click();
         }
-        protected void FillContactForm(ContactData contactdata)
+        public void FillContactForm(ContactData contactdata)
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
@@ -166,8 +93,7 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("notes")).Clear();
             driver.FindElement(By.Name("notes")).SendKeys(contactdata.Notes);
         }
-
-        protected void InitContactCreation()
+        public void InitContactCreation()
         {
             driver.FindElement(By.LinkText("add new")).Click();
         }
