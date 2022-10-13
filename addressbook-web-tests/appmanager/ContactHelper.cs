@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
 
 namespace WebAddressbookTests
 {
@@ -12,10 +13,43 @@ namespace WebAddressbookTests
 
         public ContactHelper Create(ContactData contact)
         {
+            manager.Navigator.GoToHomePage();
             manager.Contacts.InitContactCreation();
             FillContactForm(contact);
             SubmitContactCreation();
             ReturnToContactsPage();
+            return this;
+        }
+
+        public ContactHelper Modify(int p, ContactData newdata)
+        {
+            manager.Navigator.GoToHomePage();
+            OpenEditForm(p);
+            FillContactForm(newdata);
+            SubmitContactUpdate();
+            ReturnToContactsPage();
+            return this;
+        }
+
+        public ContactHelper Remove(int p)
+        {
+            manager.Navigator.GoToHomePage();
+            SelectContact(p);
+            DeleteContact();
+            ReturnToContactsPage();
+            return this;
+        }
+
+        private ContactHelper DeleteContact()
+        {
+            driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
+            driver.SwitchTo().Alert().Accept();
+            return this;
+        }
+
+        private ContactHelper SelectContact(int p)
+        {
+            driver.FindElement(By.XPath("(//input[@type='checkbox'][not(contains(@id,'MassCB'))])[" + p + "]")).Click();
             return this;
         }
 
@@ -29,6 +63,13 @@ namespace WebAddressbookTests
             driver.FindElement(By.XPath("//div[@id='content']/form/input[21]")).Click();
             return this;
         }
+
+        public ContactHelper SubmitContactUpdate()
+        {
+            driver.FindElement(By.XPath("//input[@name='update'][2]")).Click();
+            return this;
+        }
+
         public ContactHelper FillContactForm(ContactData contactdata)
         {
             driver.FindElement(By.Name("firstname")).Click();
@@ -91,8 +132,6 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("ayear")).Click();
             driver.FindElement(By.Name("ayear")).Clear();
             driver.FindElement(By.Name("ayear")).SendKeys(contactdata.Ayear);
-            driver.FindElement(By.Name("new_group")).Click();
-            new SelectElement(driver.FindElement(By.Name("new_group"))).SelectByText(contactdata.Group);
             driver.FindElement(By.Name("address2")).Click();
             driver.FindElement(By.Name("address2")).Clear();
             driver.FindElement(By.Name("address2")).SendKeys(contactdata.Address2);
@@ -107,6 +146,12 @@ namespace WebAddressbookTests
         public ContactHelper InitContactCreation()
         {
             driver.FindElement(By.LinkText("add new")).Click();
+            return this;
+        }
+
+        public ContactHelper OpenEditForm(int p)
+        {
+            driver.FindElement(By.XPath("(//img[@alt='Edit'])["+p+"]")).Click();
             return this;
         }
     }
