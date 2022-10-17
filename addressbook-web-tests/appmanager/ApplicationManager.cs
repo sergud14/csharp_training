@@ -2,6 +2,7 @@
 using System.Text;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
 
 namespace WebAddressbookTests
 {
@@ -17,6 +18,7 @@ namespace WebAddressbookTests
         public ApplicationManager()
         {
             driver=new ChromeDriver();
+            //driver = new FirefoxDriver();
             loginHelper = new LoginHelper(this);
             navigator = new NavigationHelper(this,baseURL);
             groupHelper = new GroupHelper(this);

@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
 
 namespace WebAddressbookTests
 {
@@ -24,22 +23,43 @@ namespace WebAddressbookTests
         public ContactHelper Modify(int p, ContactData newdata)
         {
             manager.Navigator.GoToHomePage();
-            OpenEditForm(p);
-            FillContactForm(newdata);
-            SubmitContactUpdate();
-            ReturnToContactsPage();
+
+            if (ContactExists() == true)
+            {
+                OpenEditForm(p);
+                FillContactForm(newdata);
+                SubmitContactUpdate();
+                ReturnToContactsPage();
+            }
+            else 
+            {
+                ContactData test = new ContactData("test","test");
+                Create(test);
+                Modify(1, newdata);
+            }
+
             return this;
         }
 
         public ContactHelper Remove(int p)
         {
             manager.Navigator.GoToHomePage();
-            SelectContact(p);
-            DeleteContact();
-            ReturnToContactsPage();
+
+            if (ContactExists() == true)
+            {
+                SelectContact(p);
+                DeleteContact();
+                ReturnToContactsPage();
+            }
+            else
+            {
+                ContactData test = new ContactData("test", "test");
+                Create(test);
+                Remove(1);
+            }
+
             return this;
         }
-
         private ContactHelper DeleteContact()
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
@@ -67,9 +87,28 @@ namespace WebAddressbookTests
         public ContactHelper SubmitContactUpdate()
         {
             driver.FindElement(By.XPath("//input[@name='update'][2]")).Click();
+
             return this;
         }
 
+        public bool ContactExists()
+        {
+            bool result = false;
+            try
+            {
+                ReturnToContactsPage();
+                if (driver.FindElements(By.XPath("//table//tr")).Count > 1)
+                {
+                    result = true;
+                }
+            }
+            catch
+            {
+                result = false;
+            }
+
+            return result;
+        }
         public ContactHelper FillContactForm(ContactData contactdata)
         {
             driver.FindElement(By.Name("firstname")).Click();
