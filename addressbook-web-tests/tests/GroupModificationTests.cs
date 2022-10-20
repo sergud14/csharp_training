@@ -8,10 +8,20 @@ namespace WebAddressbookTests
         [Test]
         public void GroupModificationTest()
         {
+            int numberOfGroup = 5;
             GroupData newdata = new GroupData("name2");
             newdata.Header = "header2";
             newdata.Footer = "footer2";
-            app.Groups.Modify(1, newdata);
+            if (app.Groups.GroupsCount() >= numberOfGroup)
+            { 
+                app.Groups.Modify(numberOfGroup, newdata);
+            }
+            else 
+            {
+                GroupData groupData = new GroupData("test");
+                app.Groups.Create(groupData);
+                app.Groups.Modify(app.Groups.FindLastAddedGroupNumber(), newdata);
+            }
         }
     }
 }

@@ -8,7 +8,17 @@ namespace WebAddressbookTests
         [Test]
         public void ContactRemovalTest()
         {
-            app.Contacts.Remove(1);
+            int numberOfContact = 3;
+            if (app.Contacts.ContactsCount() >= numberOfContact)
+            {
+                app.Contacts.Remove(numberOfContact);
+            }
+            else
+            {
+                ContactData test = new ContactData("test", "test");
+                app.Contacts.Create(test);
+                app.Contacts.Remove(app.Contacts.FindLastAddedContactNumber());
+            }
         }
     }
 }

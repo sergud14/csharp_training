@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using System;
 
 namespace WebAddressbookTests
 {
@@ -21,20 +22,11 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToGroupsPage();
 
-            if (GroupExists() == true)
-            {
-                SelectGroup(p);
-                InitGroupModification();
-                FillGroupForm(newdata);
-                SubmitGroupModification();
-                ReturnToGroupsPage();
-            }
-            else
-            {
-                GroupData groupData = new GroupData("test");
-                Create(groupData);
-                Modify(1, newdata);
-            }
+            SelectGroup(p);
+            InitGroupModification();
+            FillGroupForm(newdata);
+            SubmitGroupModification();
+            ReturnToGroupsPage();
             
             return this;
         }
@@ -43,18 +35,9 @@ namespace WebAddressbookTests
         {
             manager.Navigator.GoToGroupsPage();
 
-            if (GroupExists() == true)
-            {
-                SelectGroup(p);
-                RemoveGroup();
-                ReturnToGroupsPage();
-            }
-            else
-            {
-                GroupData groupData = new GroupData("test");
-                Create(groupData);
-                Remove(1);
-            }
+            SelectGroup(p);
+            RemoveGroup();
+            ReturnToGroupsPage();
 
             return this;
         }
@@ -82,6 +65,66 @@ namespace WebAddressbookTests
 
             return result;
         }
+
+        public int GroupsCount()
+        {
+            ReturnToGroupsPage();
+            int result = 0;
+            try
+            {
+                result = driver.FindElements(By.XPath("//span[@class='group']")).Count;
+            }
+            catch
+            {
+                result = 0;
+            }
+
+            return result;
+        }
+
+
+        public int FindLastAddedGroupNumber()
+        {
+            int result = 0;
+            try
+            {
+                ReturnToGroupsPage();
+                var rows = driver.FindElements(By.XPath("//span[@class='group']//input"));
+                int[] arrId = new int[rows.Count];
+                int[] sortedArrId = new int[rows.Count];
+
+                for (int i = 0; i < rows.Count; i++)
+                {
+                    By contactRow = By.XPath("//span[@class='group']//input");
+                    int id = Int32.Parse(driver.FindElement((By.XPath("(//span[@class='group']//input)[" + (i + 1) + "]"))).GetAttribute("value"));
+                    arrId[i] = id;
+                    sortedArrId[i] = id;
+                }
+
+                Array.Sort(sortedArrId);
+                int max = sortedArrId[sortedArrId.Length - 1];
+                string resultmax = max.ToString();
+
+                int j = 0;
+                for (int i = 0; i < rows.Count; i++)
+                {
+                    if (arrId[i] == max)
+                    {
+                        j = i + 1;
+                    }
+                }
+
+                result = j;
+            }
+            catch
+            {
+                result = 0;
+            }
+
+            return result;
+        }
+
+
 
         public GroupHelper SelectGroup(int p)
         {

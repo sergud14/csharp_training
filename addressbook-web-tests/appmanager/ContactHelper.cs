@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
 
 namespace WebAddressbookTests
 {
@@ -23,20 +25,10 @@ namespace WebAddressbookTests
         public ContactHelper Modify(int p, ContactData newdata)
         {
             manager.Navigator.GoToHomePage();
-
-            if (ContactExists() == true)
-            {
-                OpenEditForm(p);
-                FillContactForm(newdata);
-                SubmitContactUpdate();
-                ReturnToContactsPage();
-            }
-            else 
-            {
-                ContactData test = new ContactData("test","test");
-                Create(test);
-                Modify(1, newdata);
-            }
+            OpenEditForm(p);
+            FillContactForm(newdata);
+            SubmitContactUpdate();
+            ReturnToContactsPage();
 
             return this;
         }
@@ -44,19 +36,9 @@ namespace WebAddressbookTests
         public ContactHelper Remove(int p)
         {
             manager.Navigator.GoToHomePage();
-
-            if (ContactExists() == true)
-            {
-                SelectContact(p);
-                DeleteContact();
-                ReturnToContactsPage();
-            }
-            else
-            {
-                ContactData test = new ContactData("test", "test");
-                Create(test);
-                Remove(1);
-            }
+            SelectContact(p);
+            DeleteContact();
+            ReturnToContactsPage();
 
             return this;
         }
@@ -97,7 +79,7 @@ namespace WebAddressbookTests
             try
             {
                 ReturnToContactsPage();
-                if (driver.FindElements(By.XPath("//table//tr")).Count > 1)
+                if (driver.FindElements(By.XPath("//table//tr[@class]")).Count > 0)
                 {
                     result = true;
                 }
@@ -109,6 +91,64 @@ namespace WebAddressbookTests
 
             return result;
         }
+
+        public int ContactsCount()
+        {
+            int result = 0;
+            try
+            {
+                ReturnToContactsPage();
+                result = driver.FindElements(By.XPath("//table//tr[@class]")).Count;
+            }
+            catch
+            {
+                result = 0;
+            }
+
+            return result;
+        }
+
+        public int FindLastAddedContactNumber()
+        {
+            int result = 0;
+            try
+            {
+                ReturnToContactsPage();
+                var rows= driver.FindElements(By.XPath("//table//tr[@class]/td/input[@id]"));
+                int[] arrId=new int[rows.Count];
+                int[] sortedArrId = new int[rows.Count];
+
+                for (int i = 0; i < rows.Count; i++)
+                {
+                    By contactRow = By.XPath("//table//tr[@class]/td/input[@id]");
+                    int id = Int32.Parse(driver.FindElement((By.XPath("(//table//tr[@class]/td/input[@id])["+(i+1)+"]"))).GetAttribute("value"));
+                    arrId[i]=id;
+                    sortedArrId[i]=id;
+                }
+
+                Array.Sort(sortedArrId);
+                int max = sortedArrId[sortedArrId.Length-1];
+                string resultmax = max.ToString();
+
+                int j = 0;
+                for (int i = 0; i < rows.Count; i++)
+                {
+                    if (arrId[i] == max)
+                    {
+                        j = i+1;
+                    }
+                }
+
+                result = j;
+            }
+            catch
+            {
+                result = 0;
+            }
+
+            return result;
+        }
+
         public ContactHelper FillContactForm(ContactData contactdata)
         {
             driver.FindElement(By.Name("firstname")).Click();

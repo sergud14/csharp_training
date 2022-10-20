@@ -8,7 +8,17 @@ namespace WebAddressbookTests
         [Test]
         public void GroupRemovalTest()
         {
-            app.Groups.Remove(1);
+            int numberOfGroup = 5;
+            if (app.Groups.GroupsCount() >= numberOfGroup)
+            {
+                app.Groups.Remove(numberOfGroup);
+            }
+            else
+            {
+                GroupData groupData = new GroupData("test");
+                app.Groups.Create(groupData);
+                app.Groups.Remove(app.Groups.FindLastAddedGroupNumber());
+            }
         }
     }
 }
