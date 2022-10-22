@@ -183,7 +183,7 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("company")).Click();
             driver.FindElement(By.Name("company")).Clear();
             driver.FindElement(By.Name("company")).SendKeys(contactdata.Company);
-            //driver.FindElement(By.XPath("//input[@name='photo']")).SendKeys(contactdata.Photo);
+            driver.FindElement(By.XPath("//input[@name='photo']")).SendKeys(contactdata.Photo);
             driver.FindElement(By.Name("address")).Click();
             driver.FindElement(By.Name("address")).Clear();
             driver.FindElement(By.Name("address")).SendKeys(contactdata.Address);
