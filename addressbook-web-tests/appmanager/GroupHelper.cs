@@ -46,6 +46,7 @@ namespace WebAddressbookTests
         private void RemoveGroup()
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[5]")).Click();
+            groupCache = null;
         }
 
         public bool GroupExists()
@@ -83,16 +84,21 @@ namespace WebAddressbookTests
             return result;
         }
 
+        private List<GroupData> groupCache=null;
         public List<GroupData> GetGroupList()
         {
-            List<GroupData> groups = new List<GroupData> ();
-            manager.Navigator.GoToGroupsPage();
-            ICollection<IWebElement> elements=driver.FindElements(By.CssSelector("span.group"));
-            foreach (IWebElement element in elements)
+
+            if (groupCache == null)
             {
-                groups.Add(new GroupData(element.Text));
+                groupCache = new List<GroupData>();
+                manager.Navigator.GoToGroupsPage();
+                ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+                foreach (IWebElement element in elements)
+                {
+                    groupCache.Add(new GroupData(element.Text));
+                }
             }
-            return groups;
+            return new List<GroupData>(groupCache);
         }
 
         public int FindLastAddedGroupNumber()
@@ -163,12 +169,14 @@ namespace WebAddressbookTests
         public GroupHelper SubmitGroupCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
+            groupCache = null;
             return this;
         }
 
         public GroupHelper SubmitGroupModification()
         {
             driver.FindElement(By.Name("update")).Click();
+            groupCache = null;
             return this;
         }
 

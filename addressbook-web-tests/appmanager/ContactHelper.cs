@@ -46,6 +46,7 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.XPath("//input[@value='Delete']")).Click();
             driver.SwitchTo().Alert().Accept();
+            contactsCache = null;
             return this;
         }
 
@@ -63,13 +64,14 @@ namespace WebAddressbookTests
         public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.XPath("//div[@id='content']/form/input[21]")).Click();
+            contactsCache = null;
             return this;
         }
 
         public ContactHelper SubmitContactUpdate()
         {
             driver.FindElement(By.XPath("//input[@name='update'][2]")).Click();
-
+            contactsCache = null;
             return this;
         }
 
@@ -92,17 +94,21 @@ namespace WebAddressbookTests
             return result;
         }
 
+        private List<ContactData> contactsCache=null;
         public List<ContactData> GetContactList()
         {
-            List<ContactData> contacts = new List<ContactData>();
-            manager.Navigator.GoToHomePage();
-            var elementsLastName = driver.FindElements(By.XPath("//table//tr//td[2]"));
-            var elementsFirstName = driver.FindElements(By.XPath("//table//tr//td[3]"));
-            for (int i= 0;i< elementsLastName.Count;i++)
+            if (contactsCache == null)
             {
-                contacts.Add(new ContactData(elementsFirstName[i].Text, elementsLastName[i].Text));
+                contactsCache = new List<ContactData>();
+                manager.Navigator.GoToHomePage();
+                var elementsLastName = driver.FindElements(By.XPath("//table//tr//td[2]"));
+                var elementsFirstName = driver.FindElements(By.XPath("//table//tr//td[3]"));
+                for (int i = 0; i < elementsLastName.Count; i++)
+                {
+                    contactsCache.Add(new ContactData(elementsFirstName[i].Text, elementsLastName[i].Text));
+                }
             }
-            return contacts;
+            return new List<ContactData>(contactsCache);
         }
 
 
