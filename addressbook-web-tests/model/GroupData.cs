@@ -1,8 +1,6 @@
-﻿using System;
-
-namespace WebAddressbookTests
+﻿namespace WebAddressbookTests
 {
-     public class GroupData:IEquatable<GroupData>, IComparable<GroupData>
+     public class GroupData
     {
         private string name;
         private string header="";
@@ -31,35 +29,6 @@ namespace WebAddressbookTests
         { 
             get { return footer; }
             set { footer = value; }
-        }
-
-        public bool Equals(GroupData other)
-        {
-            if (Object.ReferenceEquals(other, null))
-            {
-                return false;
-            }
-            if (Object.ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            return Name == other.Name;
-        }
-
-        public override int GetHashCode()
-        {
-            return Name.GetHashCode();
-        }
-
-        public int CompareTo(GroupData other)
-        {
-            if (Object.ReferenceEquals(other, null))
-            {
-                return 1;
-            }
-
-            return Name.CompareTo(other.Name);
         }
     }
 }

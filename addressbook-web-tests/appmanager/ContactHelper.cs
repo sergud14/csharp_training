@@ -51,7 +51,7 @@ namespace WebAddressbookTests
 
         private ContactHelper SelectContact(int p)
         {
-            driver.FindElement(By.XPath("(//input[@type='checkbox'][not(contains(@id,'MassCB'))])[" + (p+1) + "]")).Click();
+            driver.FindElement(By.XPath("(//input[@type='checkbox'][not(contains(@id,'MassCB'))])[" + p + "]")).Click();
             return this;
         }
 
@@ -91,20 +91,6 @@ namespace WebAddressbookTests
 
             return result;
         }
-
-        public List<ContactData> GetContactList()
-        {
-            List<ContactData> contacts = new List<ContactData>();
-            manager.Navigator.GoToHomePage();
-            var elementsLastName = driver.FindElements(By.XPath("//table//tr//td[2]"));
-            var elementsFirstName = driver.FindElements(By.XPath("//table//tr//td[3]"));
-            for (int i= 0;i< elementsLastName.Count;i++)
-            {
-                contacts.Add(new ContactData(elementsFirstName[i].Text, elementsLastName[i].Text));
-            }
-            return contacts;
-        }
-
 
         public int ContactsCount()
         {
@@ -183,7 +169,7 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("company")).Click();
             driver.FindElement(By.Name("company")).Clear();
             driver.FindElement(By.Name("company")).SendKeys(contactdata.Company);
-            //driver.FindElement(By.XPath("//input[@name='photo']")).SendKeys(contactdata.Photo);
+            driver.FindElement(By.XPath("//input[@name='photo']")).SendKeys(contactdata.Photo);
             driver.FindElement(By.Name("address")).Click();
             driver.FindElement(By.Name("address")).Clear();
             driver.FindElement(By.Name("address")).SendKeys(contactdata.Address);
@@ -244,7 +230,7 @@ namespace WebAddressbookTests
 
         public ContactHelper OpenEditForm(int p)
         {
-            driver.FindElement(By.XPath("(//img[@alt='Edit'])["+(p+1)+"]")).Click();
+            driver.FindElement(By.XPath("(//img[@alt='Edit'])["+p+"]")).Click();
             return this;
         }
     }

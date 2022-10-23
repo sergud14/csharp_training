@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using System;
-using System.Collections.Generic;
 
 namespace WebAddressbookTests
 {
@@ -83,17 +82,6 @@ namespace WebAddressbookTests
             return result;
         }
 
-        public List<GroupData> GetGroupList()
-        {
-            List<GroupData> groups = new List<GroupData> ();
-            manager.Navigator.GoToGroupsPage();
-            ICollection<IWebElement> elements=driver.FindElements(By.CssSelector("span.group"));
-            foreach (IWebElement element in elements)
-            {
-                groups.Add(new GroupData(element.Text));
-            }
-            return groups;
-        }
 
         public int FindLastAddedGroupNumber()
         {
@@ -140,7 +128,7 @@ namespace WebAddressbookTests
 
         public GroupHelper SelectGroup(int p)
         {
-            driver.FindElement(By.XPath("//div[@id='content']/form/span["+(p+1)+"]/input")).Click();
+            driver.FindElement(By.XPath("//div[@id='content']/form/span["+p+"]/input")).Click();
             return this;
         }
 
