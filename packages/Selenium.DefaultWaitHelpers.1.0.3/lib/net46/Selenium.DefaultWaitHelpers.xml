@@ -1,0 +1,523 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Selenium.DefaultWaitHelpers</name>
+    </assembly>
+    <members>
+        <member name="T:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext">
+            <summary>
+            Supplies a set of common conditions that can be waited for using.
+            </summary>
+            <example>
+            <code>
+            IWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3))
+            IWebElement element = wait.Until(ExpectedConditions.ElementExists(By.Id("foo")));
+            </code>
+            </example>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext"/> class from being created.
+            </summary>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.ElementExists(OpenQA.Selenium.By)">
+            <summary>
+            An expectation for checking that an element is present on the DOM of a
+            page. This does not necessarily mean that the element is visible.
+            </summary>
+            <param name="locator">The locator used to find the element.</param>
+            <returns>The <see cref="T:OpenQA.Selenium.IWebElement"/> once it is located.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.ElementIsVisible(OpenQA.Selenium.By)">
+            <summary>
+            An expectation for checking that an element is present on the DOM of a page
+            and visible. Visibility means that the element is not only displayed but
+            also has a height and width that is greater than 0.
+            </summary>
+            <param name="locator">The locator used to find the element.</param>
+            <returns>The <see cref="T:OpenQA.Selenium.IWebElement"/> once it is located and visible.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.VisibilityOfAllElementsLocatedBy(OpenQA.Selenium.By)">
+            <summary>
+            An expectation for checking that all elements present on the web page that
+            match the locator are visible. Visibility means that the elements are not
+            only displayed but also have a height and width that is greater than 0.
+            </summary>
+            <param name="locator">The locator used to find the element.</param>
+            <returns>The list of <see cref="T:OpenQA.Selenium.IWebElement"/> once it is located and visible.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.VisibilityOfAllElementsLocatedBy(System.Collections.ObjectModel.ReadOnlyCollection{OpenQA.Selenium.IWebElement})">
+            <summary>
+            An expectation for checking that all elements present on the web page that
+            match the locator are visible. Visibility means that the elements are not
+            only displayed but also have a height and width that is greater than 0.
+            </summary>
+            <param name="elements">list of WebElements</param>
+            <returns>The list of <see cref="T:OpenQA.Selenium.IWebElement"/> once it is located and visible.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.PresenceOfAllElementsLocatedBy(OpenQA.Selenium.By)">
+            <summary>
+            An expectation for checking that all elements present on the web page that
+            match the locator.
+            </summary>
+            <param name="locator">The locator used to find the element.</param>
+            <returns>The list of <see cref="T:OpenQA.Selenium.IWebElement"/> once it is located.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.TextToBePresentInElement(OpenQA.Selenium.IWebElement,System.String)">
+            <summary>
+            An expectation for checking if the given text is present in the specified element.
+            </summary>
+            <param name="element">The WebElement</param>
+            <param name="text">Text to be present in the element</param>
+            <returns><see langword="true"/> once the element contains the given text; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.TextToBePresentInElementLocated(OpenQA.Selenium.By,System.String)">
+            <summary>
+            An expectation for checking if the given text is present in the element that matches the given locator.
+            </summary>
+            <param name="locator">The locator used to find the element.</param>
+            <param name="text">Text to be present in the element</param>
+            <returns><see langword="true"/> once the element contains the given text; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.TextToBePresentInElementValue(OpenQA.Selenium.IWebElement,System.String)">
+            <summary>
+            An expectation for checking if the given text is present in the specified elements value attribute.
+            </summary>
+            <param name="element">The WebElement</param>
+            <param name="text">Text to be present in the element</param>
+            <returns><see langword="true"/> once the element contains the given text; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.TextToBePresentInElementValue(OpenQA.Selenium.By,System.String)">
+            <summary>
+            An expectation for checking if the given text is present in the specified elements value attribute.
+            </summary>
+            <param name="locator">The locator used to find the element.</param>
+            <param name="text">Text to be present in the element</param>
+            <returns><see langword="true"/> once the element contains the given text; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.InvisibilityOfElementLocated(OpenQA.Selenium.By)">
+            <summary>
+            An expectation for checking that an element is either invisible or not present on the DOM.
+            </summary>
+            <param name="locator">The locator used to find the element.</param>
+            <returns><see langword="true"/> if the element is not displayed; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.InvisibilityOfElementWithText(OpenQA.Selenium.By,System.String)">
+            <summary>
+            An expectation for checking that an element with text is either invisible or not present on the DOM.
+            </summary>
+            <param name="locator">The locator used to find the element.</param>
+            <param name="text">Text of the element</param>
+            <returns><see langword="true"/> if the element is not displayed; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.ElementToBeClickable(OpenQA.Selenium.By)">
+            <summary>
+            An expectation for checking an element is visible and enabled such that you
+            can click it.
+            </summary>
+            <param name="locator">The locator used to find the element.</param>
+            <returns>The <see cref="T:OpenQA.Selenium.IWebElement"/> once it is located and clickable (visible and enabled).</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.ElementToBeClickable(OpenQA.Selenium.IWebElement)">
+            <summary>
+            An expectation for checking an element is visible and enabled such that you
+            can click it.
+            </summary>
+            <param name="element">The element.</param>
+            <returns>The <see cref="T:OpenQA.Selenium.IWebElement"/> once it is clickable (visible and enabled).</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.StalenessOf(OpenQA.Selenium.IWebElement)">
+            <summary>
+            Wait until an element is no longer attached to the DOM.
+            </summary>
+            <param name="element">The element.</param>
+            <returns><see langword="false"/> is the element is still attached to the DOM; otherwise, <see langword="true"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.ElementToBeSelected(OpenQA.Selenium.IWebElement)">
+            <summary>
+            An expectation for checking if the given element is selected.
+            </summary>
+            <param name="element">The element.</param>
+            <returns><see langword="true"/> given element is selected.; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.ElementToBeSelected(OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            An expectation for checking if the given element is in correct state.
+            </summary>
+            <param name="element">The element.</param>
+            <param name="selected">selected or not selected</param>
+            <returns><see langword="true"/> given element is in correct state.; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.ElementSelectionStateToBe(OpenQA.Selenium.IWebElement,System.Boolean)">
+            <summary>
+            An expectation for checking if the given element is in correct state.
+            </summary>
+            <param name="element">The element.</param>
+            <param name="selected">selected or not selected</param>
+            <returns><see langword="true"/> given element is in correct state.; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.ElementToBeSelected(OpenQA.Selenium.By)">
+            <summary>
+            An expectation for checking if the given element is selected.
+            </summary>
+            <param name="locator">The locator used to find the element.</param>
+            <returns><see langword="true"/> given element is selected.; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.ElementSelectionStateToBe(OpenQA.Selenium.By,System.Boolean)">
+            <summary>
+            An expectation for checking if the given element is in correct state.
+            </summary>
+            <param name="locator">The locator used to find the element.</param>
+            <param name="selected">selected or not selected</param>
+            <returns><see langword="true"/> given element is in correct state.; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.ElementContainsClass(OpenQA.Selenium.By,System.String)">
+            <summary>
+            An expectation for checking if the given element contains expected class.
+            </summary>
+            <param name="locator">The locator used to find the element.</param>
+            <param name="className">expectation of class to be in element</param>
+            <returns><see langword="true"/> given element is in correct state.; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.ElementContainsClass(OpenQA.Selenium.IWebElement,System.String)">
+            <summary>
+            An expectation for checking if the given element contains expected class.
+            </summary>
+            <param name="element">The element.</param>
+            <param name="className">expectation of class to be in element</param>
+            <returns><see langword="true"/> given element is in correct state.; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.ElementNotContainsClass(OpenQA.Selenium.By,System.String)">
+            <summary>
+            An expectation for checking if the given element not contains expected class.
+            </summary>
+            <param name="locator">The locator used to find the element.</param>
+            <param name="className">expectation of class not to be in element</param>
+            <returns><see langword="true"/> given element is in correct state.; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsSearchContext.ElementNotContainsClass(OpenQA.Selenium.IWebElement,System.String)">
+            <summary>
+            An expectation for checking if the given element not contains expected class.
+            </summary>
+            <param name="element">The element.</param>
+            <param name="className">expectation of class not to be in element</param>
+            <returns><see langword="true"/> given element is in correct state.; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="T:Selenium.DefaultWaitHelpers.ExpectedConditionsWebDriver">
+            <summary>
+            Supplies a set of common conditions that can be waited for using.
+            </summary>
+            <example>
+            <code>
+            IWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(3))
+            IWebElement element = wait.Until(ExpectedConditions.ElementExists(By.Id("foo")));
+            </code>
+            </example>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsWebDriver.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Selenium.DefaultWaitHelpers.ExpectedConditionsWebDriver"/> class from being created.
+            </summary>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsWebDriver.TitleIs(System.String)">
+            <summary>
+            An expectation for checking the title of a page.
+            </summary>
+            <param name="title">The expected title, which must be an exact match.</param>
+            <returns><see langword="true"/> when the title matches; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsWebDriver.TitleContains(System.String)">
+            <summary>
+            An expectation for checking that the title of a page contains a case-sensitive substring.
+            </summary>
+            <param name="title">The fragment of title expected.</param>
+            <returns><see langword="true"/> when the title matches; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsWebDriver.UrlToBe(System.String)">
+            <summary>
+            An expectation for the URL of the current page to be a specific URL.
+            </summary>
+            <param name="url">The URL that the page should be on</param>
+            <returns><see langword="true"/> when the URL is what it should be; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsWebDriver.UrlContains(System.String)">
+            <summary>
+            An expectation for the URL of the current page to be a specific URL.
+            </summary>
+            <param name="fraction">The fraction of the url that the page should be on</param>
+            <returns><see langword="true"/> when the URL contains the text; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsWebDriver.UrlMatches(System.String)">
+            <summary>
+            An expectation for the URL of the current page to be a specific URL.
+            </summary>
+            <param name="regex">The regular expression that the URL should match</param>
+            <returns><see langword="true"/> if the URL matches the specified regular expression; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsWebDriver.FrameToBeAvailableAndSwitchToIt(System.String)">
+            <summary>
+            An expectation for checking whether the given frame is available to switch
+            to. If the frame is available it switches the given driver to the
+            specified frame.
+            </summary>
+            <param name="frameLocator">Used to find the frame (id or name)</param>
+            <returns><see cref="T:OpenQA.Selenium.IWebDriver"/></returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsWebDriver.FrameToBeAvailableAndSwitchToIt(OpenQA.Selenium.By)">
+            <summary>
+            An expectation for checking whether the given frame is available to switch
+            to. If the frame is available it switches the given driver to the
+            specified frame.
+            </summary>
+            <param name="locator">Locator for the Frame</param>
+            <returns><see cref="T:OpenQA.Selenium.IWebDriver"/></returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsWebDriver.AlertIsPresent">
+            <summary>
+            An expectation for checking the AlterIsPresent
+            </summary>
+            <returns>Alert </returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.ExpectedConditionsWebDriver.AlertState(System.Boolean)">
+            <summary>
+            An expectation for checking the Alert State
+            </summary>
+            <param name="state">A value indicating whether or not an alert should be displayed in order to meet this condition.</param>
+            <returns><see langword="true"/> alert is in correct state present or not present; otherwise, <see langword="false"/>.</returns>
+        </member>
+        <member name="T:Selenium.DefaultWaitHelpers.WaitForElement">
+            <summary>
+            Automatically perform an ExpectedConditionsSearchContext and return element.
+            </summary>
+        </member>
+        <member name="F:Selenium.DefaultWaitHelpers.WaitForElement.None">
+            <summary>
+            No ExpectedConditionsSearchContext, use default FindElement
+            </summary>
+        </member>
+        <member name="F:Selenium.DefaultWaitHelpers.WaitForElement.Visible">
+            <summary>
+            ExpectedConditionsSearchContext ElementIsVisible
+            </summary>
+        </member>
+        <member name="F:Selenium.DefaultWaitHelpers.WaitForElement.Clickable">
+            <summary>
+            ExpectedConditionsSearchContext ElementToBeClickable
+            </summary>
+        </member>
+        <member name="F:Selenium.DefaultWaitHelpers.WaitForElement.Exists">
+            <summary>
+            ExpectedConditionsSearchContext ElementExists
+            </summary>
+        </member>
+        <member name="T:Selenium.DefaultWaitHelpers.WaitForElements">
+            <summary>
+            Automatically perform an ExpectedConditionsSearchContext and return elements.
+            </summary>
+        </member>
+        <member name="F:Selenium.DefaultWaitHelpers.WaitForElements.None">
+            <summary>
+            No ExpectedConditionsSearchContext, use default FindElements
+            </summary>
+        </member>
+        <member name="F:Selenium.DefaultWaitHelpers.WaitForElements.Visible">
+            <summary>
+            ExpectedConditionsSearchContext VisibilityOfAllElementsLocatedBy
+            </summary>
+        </member>
+        <member name="F:Selenium.DefaultWaitHelpers.WaitForElements.Exists">
+            <summary>
+            ExpectedConditionsSearchContext PresenceOfAllElementsLocatedBy
+            </summary>
+        </member>
+        <member name="T:Selenium.DefaultWaitHelpers.WebDriverExtensions">
+            <summary>
+            Provides extension methods for convenience in using WebDriver.
+            </summary>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.WebDriverExtensions.WaitUntil``1(OpenQA.Selenium.IWebDriver,System.Func{OpenQA.Selenium.IWebDriver,``0},System.Type[])">
+            <summary>
+            Repeatedly applies this instance's input value to the given function until one of the following
+            occurs:
+            <para>
+            <list type="bullet">
+            <item>the function returns neither null nor false</item>
+            <item>the function throws an exception that is not in the list of ignored exception types</item>
+            <item>the timeout expires (Default = 30 seconds with pollinginterval of 50 milliseconds)</item>
+            </list>
+            </para>
+            </summary>
+            <typeparam name="T">The delegate's expected return type.</typeparam>
+            <param name="webDriver">The webDriver instance to extend.</param>
+            <param name="condition">A delegate taking an object of type T as its parameter, and returning a TResult.</param>
+            <param name="ignoreExceptionTypes">The types of exceptions to ignore.</param>
+            <returns>The delegate's return value.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.WebDriverExtensions.WaitUntil``1(OpenQA.Selenium.IWebDriver,System.Func{OpenQA.Selenium.IWebDriver,``0},System.TimeSpan,System.Type[])">
+            <summary>
+            Repeatedly applies this instance's input value to the given function until one of the following
+            occurs:
+            <para>
+            <list type="bullet">
+            <item>the function returns neither null nor false</item>
+            <item>the function throws an exception that is not in the list of ignored exception types</item>
+            <item>the timeout expires (Default pollinginterval of 50 milliseconds)</item>
+            </list>
+            </para>
+            </summary>
+            <typeparam name="T">The delegate's expected return type.</typeparam>
+            <param name="webDriver">The webDriver instance to extend.</param>
+            <param name="condition">A delegate taking an object of type T as its parameter, and returning a TResult.</param>
+            <param name="timeout">The timeout value indicating how long to wait for the condition.</param>
+            <param name="ignoreExceptionTypes">The types of exceptions to ignore.</param>
+            <returns>The delegate's return value.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.WebDriverExtensions.WaitUntil``1(OpenQA.Selenium.IWebDriver,System.Func{OpenQA.Selenium.IWebDriver,``0},System.TimeSpan,System.TimeSpan,System.Type[])">
+            <summary>
+            Repeatedly applies this instance's input value to the given function until one of the following
+            occurs:
+            <para>
+            <list type="bullet">
+            <item>the function returns neither null nor false</item>
+            <item>the function throws an exception that is not in the list of ignored exception types</item>
+            <item>the timeout expires</item>
+            </list>
+            </para>
+            </summary>
+            <typeparam name="T">The delegate's expected return type.</typeparam>
+            <param name="webDriver">The webDriver instance to extend.</param>
+            <param name="condition">A delegate taking an object of type T as its parameter, and returning a TResult.</param>
+            <param name="timeout">The timeout value indicating how long to wait for the condition.</param>
+            <param name="pollingInterval">A System.TimeSpan value indicating how often to check for the condition to be true.</param>
+            <param name="ignoreExceptionTypes">The types of exceptions to ignore.</param>
+            <returns>The delegate's return value.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.WebDriverExtensions.FindElement(OpenQA.Selenium.IWebDriver,OpenQA.Selenium.By,Selenium.DefaultWaitHelpers.WaitForElement)">
+            <summary>
+            Finds the first OpenQA.Selenium.IWebElement using the given method.
+            </summary>
+            <param name="webDriver">The webDriver instance to extend.</param>
+            <param name="by">The locating mechanism to use.</param>
+            <param name="waitForElement">Automatically perform an ExpectedConditionsSearchContext and return element.</param>
+            <returns>The first matching OpenQA.Selenium.IWebElement on the current context.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.WebDriverExtensions.FindElements(OpenQA.Selenium.IWebDriver,OpenQA.Selenium.By,Selenium.DefaultWaitHelpers.WaitForElements)">
+            <summary>
+            Finds all IWebElements within the current context using the given mechanism.
+            </summary>
+            <param name="webDriver">The webDriver instance to extend.</param>
+            <param name="by">The locating mechanism to use.</param>
+            <param name="waitForElements">Automatically perform an ExpectedConditionsSearchContext and return elements.</param>
+            <returns>A System.Collections.ObjectModel.ReadOnlyCollection`1 of all WebElements matching 
+            the current criteria, or an empty list if nothing matches.</returns>
+        </member>
+        <member name="T:Selenium.DefaultWaitHelpers.WebElementExtensions">
+            <summary>
+            Provides extension methods for convenience in using WebElement.
+            </summary>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.WebElementExtensions.WaitUntil``1(OpenQA.Selenium.IWebElement,System.Func{OpenQA.Selenium.IWebElement,``0},System.Type[])">
+            <summary>
+            Repeatedly applies this instance's input value to the given function until one of the following
+            occurs:
+            <para>
+            <list type="bullet">
+            <item>the function returns neither null nor false</item>
+            <item>the function throws an exception that is not in the list of ignored exception types</item>
+            <item>the timeout expires (Default = 30 seconds with pollinginterval of 50 milliseconds)</item>
+            </list>
+            </para>
+            </summary>
+            <typeparam name="T">The delegate's expected return type.</typeparam>
+            <param name="webElement">The webElement instance to extend.</param>
+            <param name="condition">A delegate taking an object of type T as its parameter, and returning a TResult.</param>
+            <param name="ignoreExceptionTypes">The types of exceptions to ignore.</param>
+            <returns>The delegate's return value.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.WebElementExtensions.WaitUntil``1(OpenQA.Selenium.IWebElement,System.Func{OpenQA.Selenium.IWebElement,``0},System.TimeSpan,System.Type[])">
+            <summary>
+            Repeatedly applies this instance's input value to the given function until one of the following
+            occurs:
+            <para>
+            <list type="bullet">
+            <item>the function returns neither null nor false</item>
+            <item>the function throws an exception that is not in the list of ignored exception types</item>
+            <item>the timeout expires (Default pollinginterval of 50 milliseconds)</item>
+            </list>
+            </para>
+            </summary>
+            <typeparam name="T">The delegate's expected return type.</typeparam>
+            <param name="webElement">The webElement instance to extend.</param>
+            <param name="condition">A delegate taking an object of type T as its parameter, and returning a TResult.</param>
+            <param name="timeout">The timeout value indicating how long to wait for the condition.</param>
+            <param name="ignoreExceptionTypes">The types of exceptions to ignore.</param>
+            <returns>The delegate's return value.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.WebElementExtensions.WaitUntil``1(OpenQA.Selenium.IWebElement,System.Func{OpenQA.Selenium.IWebElement,``0},System.TimeSpan,System.TimeSpan,System.Type[])">
+            <summary>
+            Repeatedly applies this instance's input value to the given function until one of the following
+            occurs:
+            <para>
+            <list type="bullet">
+            <item>the function returns neither null nor false</item>
+            <item>the function throws an exception that is not in the list of ignored exception types</item>
+            <item>the timeout expires</item>
+            </list>
+            </para>
+            </summary>
+            <typeparam name="T">The delegate's expected return type.</typeparam>
+            <param name="webElement">The webElement instance to extend.</param>
+            <param name="condition">A delegate taking an object of type T as its parameter, and returning a TResult.</param>
+            <param name="timeout">The timeout value indicating how long to wait for the condition.</param>
+            <param name="pollingInterval">A System.TimeSpan value indicating how often to check for the condition to be true.</param>
+            <param name="ignoreExceptionTypes">The types of exceptions to ignore.</param>
+            <returns>The delegate's return value.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.WebElementExtensions.FindElement(OpenQA.Selenium.IWebElement,OpenQA.Selenium.By,Selenium.DefaultWaitHelpers.WaitForElement)">
+            <summary>
+            Finds the first OpenQA.Selenium.IWebElement using the given method.
+            </summary>
+            <param name="webElement">The webElement instance to extend.</param>
+            <param name="by">The locating mechanism to use.</param>
+            <param name="waitForElement">Automatically wait for element to be in selected state.</param>
+            <returns>The first matching OpenQA.Selenium.IWebElement on the current context.</returns>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.WebElementExtensions.FindElements(OpenQA.Selenium.IWebElement,OpenQA.Selenium.By,Selenium.DefaultWaitHelpers.WaitForElements)">
+            <summary>
+            Finds all IWebElements within the current context using the given mechanism.
+            </summary>
+            <param name="webElement">The webElement instance to extend.</param>
+            <param name="by">The locating mechanism to use.</param>
+            <param name="waitForElements">Automatically wait for elements to be in selected state.</param>
+            <returns>A System.Collections.ObjectModel.ReadOnlyCollection`1 of all WebElements matching 
+            the current criteria, or an empty list if nothing matches.</returns>
+        </member>
+        <member name="T:Selenium.DefaultWaitHelpers.WebElementWait">
+            <summary>
+            Provides the ability to wait for an arbitrary condition during test execution.
+            </summary>
+            <example>
+            <code>
+            IWait wait = new WebElementWait(element, TimeSpan.FromSeconds(3))
+            IWebElement element = wait.Until(element => element.FindElement(By.Name("q")));
+            </code>
+            </example>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.WebElementWait.#ctor(OpenQA.Selenium.IWebElement,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Selenium.DefaultWaitHelpers.WebElementWait"/> class.
+            </summary>
+            <param name="element">The WebElement instance used to wait.</param>
+            <param name="timeout">The timeout value indicating how long to wait for the condition.</param>
+        </member>
+        <member name="M:Selenium.DefaultWaitHelpers.WebElementWait.#ctor(OpenQA.Selenium.Support.UI.IClock,OpenQA.Selenium.IWebElement,System.TimeSpan,System.TimeSpan)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Selenium.DefaultWaitHelpers.WebElementWait"/> class.
+            </summary>
+            <param name="clock">An object implementing the <see cref="T:OpenQA.Selenium.Support.UI.IClock"/> interface used to determine when time has passed.</param>
+            <param name="element">The WebElement instance used to wait.</param>
+            <param name="timeout">The timeout value indicating how long to wait for the condition.</param>
+            <param name="sleepInterval">A <see cref="T:System.TimeSpan"/> value indicating how often to check for the condition to be true.</param>
+        </member>
+    </members>
+</doc>
