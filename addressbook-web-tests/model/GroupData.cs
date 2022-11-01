@@ -47,6 +47,9 @@ namespace WebAddressbookTests
             return Name == other.Name;
         }
 
+
+
+
         public override int GetHashCode()
         {
             return Name.GetHashCode();

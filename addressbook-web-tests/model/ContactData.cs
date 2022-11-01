@@ -52,7 +52,7 @@ namespace WebAddressbookTests
    
     public string Company { get; set; }
     
-    public string Photo { get; set; }
+    public string Photo { get; set; } = Directory.GetCurrentDirectory() + @"\test.jpg";
 
     public string Address { get; set; }
         
