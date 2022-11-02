@@ -259,3 +259,7 @@ C:\Users\sergu\OneDrive\Рабочий стол\Новая папка (18)\addre
 C:\Users\sergu\OneDrive\Рабочий стол\Новая папка (18)\addressbook-web-tests\obj\Debug\addressbook-web-tests.csproj.CopyComplete
 C:\Users\sergu\OneDrive\Рабочий стол\Новая папка (18)\addressbook-web-tests\obj\Debug\addressbook-web-tests.dll
 C:\Users\sergu\OneDrive\Рабочий стол\Новая папка (18)\addressbook-web-tests\obj\Debug\addressbook-web-tests.pdb
+C:\Users\sergu\OneDrive\Рабочий стол\Новая папка (6)\addressbook-web-tests\bin\Debug\Selenium.DefaultWaitHelpers.dll
+C:\Users\sergu\OneDrive\Рабочий стол\Новая папка (6)\addressbook-web-tests\bin\Debug\SeleniumExtras.WaitHelpers.dll
+C:\Users\sergu\OneDrive\Рабочий стол\Новая папка (6)\addressbook-web-tests\bin\Debug\WebDriver.Support.dll
+C:\Users\sergu\OneDrive\Рабочий стол\Новая папка (6)\addressbook-web-tests\bin\Debug\Selenium.DefaultWaitHelpers.xml

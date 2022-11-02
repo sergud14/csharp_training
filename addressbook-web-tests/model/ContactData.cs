@@ -18,6 +18,7 @@ namespace WebAddressbookTests
         //private string mobile = "123456789";
         //private string work = "123456789";
         private string allPhones;
+        private string allEmails;
         //private string fax = "123456789";
         //private string email = "email";
         //private string email2 = "email2";
@@ -71,11 +72,33 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                    return CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone);
+                string phones= CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone) + CleanUp(Phone2);
+                if (phones.Length >= 2) { phones = phones.Substring(0, phones.Length - 2); }
+                return phones;
                 }
             }
         set { allPhones = value; }
+
     }
+
+        public string AllEmails
+        {
+            get
+            {
+                if (allEmails != null)
+                {
+                    return allEmails;
+                }
+                else
+                {
+                    string emails= CleanUpEmail(Email) + CleanUpEmail(Email2) + CleanUpEmail(Email3);
+                    if (emails.Length >= 2) { emails = emails.Substring(0, emails.Length - 2); }
+                    return emails;
+                }
+
+            }
+                set { allEmails = value; }
+        }
 
         private string CleanUp(string phone)
         {
@@ -85,10 +108,39 @@ namespace WebAddressbookTests
             
             }
 
-            return Regex.Replace(phone, "[ -()]", "") + "\r\n";
+            if (phone == "")
+            {
+                return Regex.Replace(phone, "[ -()]", "");
+            }
+            else 
+            {
+                return Regex.Replace(phone, "[ -()]", "") + "\r\n";
+
+            }
+      
         }
 
-    public string Fax { get; set; }
+
+        private string CleanUpEmail(string email)
+        {
+            if (email == null)
+            {
+                return "";
+
+            }
+
+            if (email == "")
+            {
+                return email;
+            }
+            else
+            {
+                return email + "\r\n";
+
+            }
+        }
+
+        public string Fax { get; set; }
 
     public string Email{ get; set; }
 
