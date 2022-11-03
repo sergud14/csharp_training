@@ -18,7 +18,6 @@ namespace WebAddressbookTests
         //private string mobile = "123456789";
         //private string work = "123456789";
         private string allPhones;
-        private string allEmails;
         //private string fax = "123456789";
         //private string email = "email";
         //private string email2 = "email2";
@@ -53,7 +52,7 @@ namespace WebAddressbookTests
    
     public string Company { get; set; }
     
-    public string Photo { get; set; }
+    public string Photo { get; set; } = Directory.GetCurrentDirectory() + @"\test.jpg";
 
     public string Address { get; set; }
         
@@ -72,33 +71,11 @@ namespace WebAddressbookTests
                 }
                 else
                 {
-                string phones= CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone) + CleanUp(Phone2);
-                if (phones.Length >= 2) { phones = phones.Substring(0, phones.Length - 2); }
-                return phones;
+                    return CleanUp(HomePhone) + CleanUp(MobilePhone) + CleanUp(WorkPhone);
                 }
             }
         set { allPhones = value; }
-
     }
-
-        public string AllEmails
-        {
-            get
-            {
-                if (allEmails != null)
-                {
-                    return allEmails;
-                }
-                else
-                {
-                    string emails= CleanUpEmail(Email) + CleanUpEmail(Email2) + CleanUpEmail(Email3);
-                    if (emails.Length >= 2) { emails = emails.Substring(0, emails.Length - 2); }
-                    return emails;
-                }
-
-            }
-                set { allEmails = value; }
-        }
 
         private string CleanUp(string phone)
         {
@@ -108,39 +85,10 @@ namespace WebAddressbookTests
             
             }
 
-            if (phone == "")
-            {
-                return Regex.Replace(phone, "[ -()]", "");
-            }
-            else 
-            {
-                return Regex.Replace(phone, "[ -()]", "") + "\r\n";
-
-            }
-      
+            return Regex.Replace(phone, "[ -()]", "") + "\r\n";
         }
 
-
-        private string CleanUpEmail(string email)
-        {
-            if (email == null)
-            {
-                return "";
-
-            }
-
-            if (email == "")
-            {
-                return email;
-            }
-            else
-            {
-                return email + "\r\n";
-
-            }
-        }
-
-        public string Fax { get; set; }
+    public string Fax { get; set; }
 
     public string Email{ get; set; }
 

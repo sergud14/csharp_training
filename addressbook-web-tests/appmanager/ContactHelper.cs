@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
+using System.Text;
 
 namespace WebAddressbookTests
 {
@@ -32,7 +33,7 @@ namespace WebAddressbookTests
             //string title = driver.FindElement(By.XPath("//div[@id='content']//i")).Text;
             //string company = driver.FindElement(By.XPath("//div[@id='content']")).Text;
             string s= driver.FindElement(By.XPath("//div[@id='content']")).GetAttribute("textContent");
-            s = Regex.Replace(s, "[\r\n]", "");
+            s = Regex.Replace(s, "[\r\n ]", "");
             return s;
 
         }
@@ -44,14 +45,12 @@ namespace WebAddressbookTests
             string lastName = cells[1].Text;
             string firstName = cells[2].Text;
             string address = cells[3].Text;
-            string allEmails = cells[4].Text;
             string allPhones = cells[5].Text;
 
             return new ContactData(firstName, lastName)
             {
                 Address = address,
-                AllPhones = allPhones,
-                AllEmails = allEmails
+                AllPhones = allPhones
             };
 
 
@@ -67,21 +66,13 @@ namespace WebAddressbookTests
             string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
             string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
             string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
-            string phone2 = driver.FindElement(By.Name("phone2")).GetAttribute("value");
-            string email = driver.FindElement(By.Name("email")).GetAttribute("value");
-            string email2 = driver.FindElement(By.Name("email2")).GetAttribute("value");
-            string email3 = driver.FindElement(By.Name("email3")).GetAttribute("value");
 
             return new ContactData(firstName, lastName)
             {
                 Address = address,
                 HomePhone=homePhone,
                 MobilePhone=mobilePhone,
-                WorkPhone=workPhone,
-                Phone2 = phone2,
-                Email = email,
-                Email2 = email2,
-                Email3 = email3
+                WorkPhone=workPhone
             };
         }
 
@@ -114,7 +105,34 @@ namespace WebAddressbookTests
             string phone2 = driver.FindElement(By.Name("phone2")).GetAttribute("value");
             string notes = driver.FindElement(By.Name("notes")).GetAttribute("value");
 
-            string s = firstName + " " + middleName + " " + lastName + nickName + title + company + address + " H: " + homePhone + "M: " + mobilePhone + "W: " + workPhone + "F: " + fax +" "+ email + email2 + email3 + "Homepage:" + homepage +" "+ "Birthday " + bday + ". " + bmonth + " " + byear + " (" + (Convert.ToInt32(DateTime.Now.Year.ToString()) - Convert.ToInt32(ayear)) + ")" + "Anniversary " + aday + ". " + amonth + " " + ayear + " (" + (Convert.ToInt32(DateTime.Now.Year.ToString()) - Convert.ToInt32(ayear)) + ") " + address2 + " P: " + phone2 + notes ;
+            //string s = firstName + " " + middleName + " " + lastName + nickName + title + company + address + " H: " + homePhone + "M: " + mobilePhone + "W: " + workPhone + "F: " + fax +" "+ email + email2 + email3 + 
+            //    "Homepage:" + homepage +" "+ "Birthday " + bday + ". " + bmonth + " " + byear + " (" + (Convert.ToInt32(DateTime.Now.Year.ToString()) - Convert.ToInt32(ayear)) + ")" + "Anniversary " + aday + ". " + amonth + " " + ayear + " (" + (Convert.ToInt32(DateTime.Now.Year.ToString()) - Convert.ToInt32(ayear)) + ") " + address2 + " P: " + phone2 + notes ;
+            StringBuilder stringBuilder = new StringBuilder();
+            if (firstName!="") stringBuilder.Append(firstName).Append(" ");
+            if (middleName != "") stringBuilder.Append(middleName).Append(" ");
+            if (lastName != "") stringBuilder.Append(lastName);
+            if (nickName != "") stringBuilder.Append(nickName);
+            if (title != "") stringBuilder.Append(title);
+            if (company != "") stringBuilder.Append(company);
+            if (address != "") stringBuilder.Append(address).Append(" ");
+            if (homePhone != "") stringBuilder.Append("H: ").Append(homePhone);
+            if (mobilePhone != "") stringBuilder.Append("M: ").Append(mobilePhone);
+            if (workPhone != "") stringBuilder.Append("W: ").Append(workPhone);
+            if (fax != "") stringBuilder.Append("F: ").Append(fax).Append(" ");
+            if (email != "") stringBuilder.Append(email);
+            if (email2 != "") stringBuilder.Append(email2);
+            if (email3 != "") stringBuilder.Append(email3);
+            if (homepage != "") stringBuilder.Append("Homepage:").Append(homepage).Append(" ");
+            if (bday != "0") stringBuilder.Append("Birthday ").Append(bday).Append(". ");
+            if (bmonth != "-") stringBuilder.Append(bmonth).Append(" ");
+            if (byear != "") stringBuilder.Append(byear).Append(" (" + (Convert.ToInt32(DateTime.Now.Year.ToString()) - Convert.ToInt32(byear)) + ")");
+            if (aday != "0") stringBuilder.Append("Anniversary ").Append(aday).Append(". ");
+            if (amonth != "-") stringBuilder.Append(amonth).Append(" ");
+            if (ayear != "") stringBuilder.Append(ayear).Append(" (" + (Convert.ToInt32(DateTime.Now.Year.ToString()) - Convert.ToInt32(ayear)) + ") ");
+            if (address2 != "") stringBuilder.Append(address2).Append(" ");
+            if (phone2 != "") stringBuilder.Append(" P: ").Append(phone2);
+            if (notes != "") stringBuilder.Append(notes);
+            string s=Regex.Replace(stringBuilder.ToString(), "[ -]", "");
             return s;
         }
 

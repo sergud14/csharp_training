@@ -10,7 +10,7 @@ namespace WebAddressbookTests
         [Test]
         public void TestContactInformation2()
         {
-            Assert.AreEqual(app.Contacts.GetContactInformationFromEditFormFull(0), app.Contacts.GetContactInformationFromDetailView(0));
+            Assert.AreEqual(app.Contacts.GetContactInformationFromEditFormFull(0), app.Contacts.GetContactInformationFromDetailView(0);
         }
     }
 }
