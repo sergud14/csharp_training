@@ -11,6 +11,12 @@ namespace WebAddressbookTests
         {
             this.name = name;
         }
+
+        public GroupData()
+        {
+           
+        }
+
         public GroupData(string name, string header, string footer)
         {
             this.name = name;
@@ -46,8 +52,6 @@ namespace WebAddressbookTests
 
             return Name == other.Name;
         }
-
-
 
 
         public override int GetHashCode()

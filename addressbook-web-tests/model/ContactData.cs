@@ -34,10 +34,16 @@ namespace WebAddressbookTests
         //private string phone2 = "phone2";
         //private string notes = "notes";
 
-        public ContactData(string firstname,string lastname)
+    public ContactData(string firstname,string lastname)
     {
             Firstname = firstname;
             Lastname = lastname;
+    }
+
+
+    public ContactData()
+    {
+
     }
 
     public string Firstname{get;set;}
